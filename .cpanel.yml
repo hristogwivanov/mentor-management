@@ -1,8 +1,6 @@
 ---
 deployment:
   tasks:
-    - export NODE_ENV=production
-    - npm install
-    - npm run build
     - rm -rf ~/public_html/*
     - cp -r dist/* ~/public_html/
+    - cp contact.php ~/public_html/
