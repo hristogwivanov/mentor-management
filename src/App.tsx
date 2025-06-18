@@ -49,7 +49,7 @@ const App: React.FC = () => {
         
         <div style={{ marginTop: '2rem', color: 'rgba(255, 255, 255, 0.9)', textAlign: 'center' }}>
           <p style={{ marginBottom: '0.5rem' }}>тел. 0899 109 507</p>
-          <p style={{ marginBottom: '0.5rem' }}>email: mentor.management.mm@gmail.com</p>
+          <p style={{ marginBottom: '0.5rem' }}>mentor.management.mm@gmail.com</p>
           <p style={{ marginBottom: '0.5rem' }}>office@mentor-management.eu</p>
           <p style={{ marginBottom: '0.5rem' }}>v.kostova@mentor-management.eu</p>
         </div>
