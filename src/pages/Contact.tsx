@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { colorThemes, backgroundOptions } from '../utils/backgroundOptions';
 import Footer from '../components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 interface FormData {
   name: string;
@@ -91,17 +93,33 @@ const Contact: React.FC = () => {
     }
     
     setIsSubmitting(true);
+    setSubmitSuccess(false);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitSuccess(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      // Send data to PHP script
+      const response = await fetch('./contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
       
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitSuccess(false), 5000);
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitSuccess(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        console.error('Server error:', result.message);
+        alert('Грешка при изпращане на съобщението: ' + result.message);
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Възникна грешка при свързване със сървъра. Моля, опитайте отново по-късно.');
     } finally {
       setIsSubmitting(false);
     }
@@ -187,8 +205,19 @@ const Contact: React.FC = () => {
               fontSize: '1.5rem',
               fontWeight: 'bold',
               color: currentTheme.accent,
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem'
             }}>
+              <FontAwesomeIcon 
+                icon={faPhone} 
+                style={{
+                  fontSize: '1.5rem',
+                  color: currentTheme.accent
+                }}
+              />
               Телефон
             </h3>
             <p style={{
@@ -212,8 +241,19 @@ const Contact: React.FC = () => {
               fontSize: '1.5rem',
               fontWeight: 'bold',
               color: currentTheme.accent,
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem'
             }}>
+              <FontAwesomeIcon 
+                icon={faEnvelope} 
+                style={{
+                  fontSize: '1.5rem',
+                  color: currentTheme.accent
+                }}
+              />
               Имейл
             </h3>
             <div style={{ color: currentTheme.textSecondary, fontSize: '1rem' }}>
@@ -254,6 +294,37 @@ const Contact: React.FC = () => {
               animation: 'fadeInSlide 0.5s ease-out'
             }}>
               ✅ Съобщението беше изпратено успешно! Ще се свържем с вас скоро.
+            </div>
+          )}
+          
+          {submitSuccess && (
+            <div style={{
+              background: 'rgba(74, 222, 128, 0.15)',
+              border: '1px solid rgba(74, 222, 128, 0.5)',
+              borderRadius: '8px',
+              padding: '1rem',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              animation: 'fadeInSlide 0.5s ease-out'
+            }}>
+              <div style={{
+                background: 'rgba(74, 222, 128, 0.25)',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginRight: '1rem',
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 6L9 17L4 12" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <p style={{ margin: 0, color: '#fff' }}>
+                Съобщението е изпратено успешно! Благодарим Ви за интереса.
+              </p>
             </div>
           )}
           

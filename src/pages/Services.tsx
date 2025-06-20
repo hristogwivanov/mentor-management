@@ -1,6 +1,8 @@
 import React from 'react';
 import { backgroundOptions, colorThemes } from '../utils/backgroundOptions';
 import Footer from '../components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserTie, faCogs, faGraduationCap, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
 const Services: React.FC = () => {
   const currentTheme = colorThemes.elegant;
@@ -10,22 +12,26 @@ const Services: React.FC = () => {
     {
       title: 'Бизнес менторство',
       description: 'Индивидуално менторство за ръководители и предприемачи',
-      features: ['Стратегическо планиране', 'Лидерски умения', 'Развитие на екипа']
+      features: ['Стратегическо планиране', 'Лидерски умения', 'Развитие на екипа'],
+      icon: faUserTie
     },
     {
       title: 'Организационно развитие',
       description: 'Оптимизиране на бизнес процеси и структури',
-      features: ['Процесно подобрение', 'Организационна структура', 'Управление на промяната']
+      features: ['Процесно подобрение', 'Организационна структура', 'Управление на промяната'],
+      icon: faCogs
     },
     {
       title: 'Обучения и тренинги',
       description: 'Корпоративни обучения за развитие на уменията',
-      features: ['Лидерство', 'Комуникация', 'Управление на проекти']
+      features: ['Лидерство', 'Комуникация', 'Управление на проекти'],
+      icon: faGraduationCap
     },
     {
       title: 'Консултантски услуги',
       description: 'Експертна консултация по бизнес въпроси',
-      features: ['Бизнес анализ', 'Стратегически съвети', 'Решения за растеж']
+      features: ['Бизнес анализ', 'Стратегически съвети', 'Решения за растеж'],
+      icon: faLightbulb
     }
   ];
 
@@ -54,12 +60,12 @@ const Services: React.FC = () => {
             }
           }
           
-          @keyframes cardFloat {
-            0%, 100% {
-              transform: translateY(0px);
+          @keyframes shimmer {
+            0% {
+              background-position: -200% 0;
             }
-            50% {
-              transform: translateY(-10px);
+            100% {
+              background-position: 200% 0;
             }
           }
           
@@ -81,10 +87,7 @@ const Services: React.FC = () => {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.7);
             background: rgba(0, 0, 0, 0.5) !important;
-          }
-          
-          .service-card:hover .service-title {
-            animation: cardFloat 2s ease-in-out infinite;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
           }
           
           .feature-item {
@@ -168,17 +171,41 @@ const Services: React.FC = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
               }}
             >
+              <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+                <FontAwesomeIcon 
+                  icon={service.icon} 
+                  size="3x" 
+                  style={{ color: currentTheme.accent }} 
+                />
+              </div>
+              <hr style={{
+                border: 'none',
+                height: '1px',
+                backgroundColor: currentTheme.accent,
+                margin: '1rem 0 0.5rem 0',
+                borderRadius: '1px'
+              }} />
+              
               <h3 
                 className="service-title"
                 style={{
                   fontSize: '1.5rem',
                   fontWeight: 'bold',
                   color: currentTheme.accent,
-                  marginBottom: '1rem'
+                  marginBottom: '0.5rem',
+                  textAlign: 'center'
                 }}
               >
                 {service.title}
               </h3>
+              
+              <hr style={{
+                border: 'none',
+                height: '1px',
+                backgroundColor: currentTheme.accent,
+                margin: '0.5rem 0 1rem 0',
+                borderRadius: '1px'
+              }} />
               
               <p style={{
                 color: currentTheme.textSecondary,

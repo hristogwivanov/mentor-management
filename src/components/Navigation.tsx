@@ -76,8 +76,7 @@ const Navigation: React.FC = () => {
           
           .nav-link.active::after {
             width: 100%;
-            animation: glow 2s ease-in-out infinite;
-          }
+            animation: glow 2s ease-in-out infinite;          }
           
           .nav-brand {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

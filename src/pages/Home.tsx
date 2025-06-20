@@ -9,7 +9,7 @@ const Home: React.FC = () => {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      height: '100vh',
       backgroundImage: `url(${currentBackground})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -18,6 +18,9 @@ const Home: React.FC = () => {
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
+      overflow: 'hidden',
+      paddingTop: '80px',
+      boxSizing: 'border-box',
     }}>
       <style>
         {`
