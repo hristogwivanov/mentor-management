@@ -5,14 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   subject: string;
   message: string;
 }
 
 interface FormErrors {
-  name?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   subject?: string;
   message?: string;
@@ -23,7 +25,8 @@ const Contact: React.FC = () => {
   const currentBackground = backgroundOptions.partnership;
   
   const [formData, setFormData] = useState<FormData>({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     subject: '',
     message: ''
@@ -36,11 +39,18 @@ const Contact: React.FC = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
     
-    // Name validation
-    if (!formData.name.trim()) {
-      newErrors.name = 'Името е задължително';
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Името трябва да бъде поне 2 символа';
+    // First name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'Името е задължително';
+    } else if (formData.firstName.trim().length < 2) {
+      newErrors.firstName = 'Името трябва да бъде поне 2 символа';
+    }
+    
+    // Last name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Фамилията е задължителна';
+    } else if (formData.lastName.trim().length < 2) {
+      newErrors.lastName = 'Фамилията трябва да бъде поне 2 символа';
     }
     
     // Email validation
@@ -109,7 +119,7 @@ const Contact: React.FC = () => {
       
       if (result.success) {
         setSubmitSuccess(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
         
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitSuccess(false), 5000);
@@ -335,18 +345,20 @@ const Contact: React.FC = () => {
             margin: '0 auto'
           }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              {/* First Name Field */}
               <div>
                 <input
                   type="text"
-                  name="name"
+                  id="firstName"
+                  name="firstName"
                   placeholder="Име"
-                  value={formData.name}
+                  value={formData.firstName}
                   onChange={handleInputChange}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '6px',
-                    border: errors.name ? '2px solid #ef4444' : '1px solid rgba(255, 255, 255, 0.2)',
+                    border: errors.firstName ? '2px solid #ef4444' : '1px solid rgba(255, 255, 255, 0.2)',
                     background: 'rgba(255, 255, 255, 0.1)',
                     color: currentTheme.text,
                     fontSize: '1rem',
@@ -359,35 +371,37 @@ const Contact: React.FC = () => {
                     e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = errors.name ? '#ef4444' : 'rgba(255, 255, 255, 0.2)';
+                    e.target.style.borderColor = errors.firstName ? '#ef4444' : 'rgba(255, 255, 255, 0.2)';
                     e.target.style.transform = 'translateY(0)';
                     e.target.style.boxShadow = 'none';
                   }}
                 />
-                {errors.name && (
+                {errors.firstName && (
                   <p style={{ 
                     color: '#ef4444', 
                     fontSize: '0.85rem', 
                     marginTop: '0.25rem',
                     animation: 'shake 0.5s ease-in-out'
                   }}>
-                    {errors.name}
+                    {errors.firstName}
                   </p>
                 )}
               </div>
               
+              {/* Last Name Field */}
               <div>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Имейл"
-                  value={formData.email}
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Фамилия"
+                  value={formData.lastName}
                   onChange={handleInputChange}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '6px',
-                    border: errors.email ? '2px solid #ef4444' : '1px solid rgba(255, 255, 255, 0.2)',
+                    border: errors.lastName ? '2px solid #ef4444' : '1px solid rgba(255, 255, 255, 0.2)',
                     background: 'rgba(255, 255, 255, 0.1)',
                     color: currentTheme.text,
                     fontSize: '1rem',
@@ -400,19 +414,19 @@ const Contact: React.FC = () => {
                     e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
                   }}
                   onBlur={(e) => {
-                    e.target.style.borderColor = errors.email ? '#ef4444' : 'rgba(255, 255, 255, 0.2)';
+                    e.target.style.borderColor = errors.lastName ? '#ef4444' : 'rgba(255, 255, 255, 0.2)';
                     e.target.style.transform = 'translateY(0)';
                     e.target.style.boxShadow = 'none';
                   }}
                 />
-                {errors.email && (
+                {errors.lastName && (
                   <p style={{ 
                     color: '#ef4444', 
                     fontSize: '0.85rem', 
                     marginTop: '0.25rem',
                     animation: 'shake 0.5s ease-in-out'
                   }}>
-                    {errors.email}
+                    {errors.lastName}
                   </p>
                 )}
               </div>
@@ -420,9 +434,51 @@ const Contact: React.FC = () => {
             
             <div>
               <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  borderRadius: '6px',
+                  border: errors.email ? '2px solid #ef4444' : '1px solid rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: currentTheme.text,
+                  fontSize: '1rem',
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = currentTheme.accent;
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = errors.email ? '#ef4444' : 'rgba(255, 255, 255, 0.2)';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+              {errors.email && (
+                <p style={{ 
+                  color: '#ef4444', 
+                  fontSize: '0.85rem', 
+                  marginTop: '0.25rem',
+                  animation: 'shake 0.5s ease-in-out'
+                }}>
+                  {errors.email}
+                </p>
+              )}
+            </div>
+            
+            <div>
+              <input
                 type="text"
                 name="subject"
-                placeholder="Тема"
+                placeholder="Тема (относно)"
                 value={formData.subject}
                 onChange={handleInputChange}
                 style={{

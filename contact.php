@@ -16,19 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $json = file_get_contents('php://input');
   $data = json_decode($json, true);
   
-  $name = isset($data["name"]) ? htmlspecialchars($data["name"]) : '';
+  $firstName = isset($data["firstName"]) ? htmlspecialchars($data["firstName"]) : '';
+  $lastName = isset($data["lastName"]) ? htmlspecialchars($data["lastName"]) : '';
+  $fullName = trim("$firstName $lastName");
   $email = isset($data["email"]) ? filter_var($data["email"], FILTER_VALIDATE_EMAIL) : false;
   $subject = isset($data["subject"]) ? htmlspecialchars($data["subject"]) : 'No subject';
   $message = isset($data["message"]) ? htmlspecialchars($data["message"]) : '';
 
   // Recipient email
   $to = "gw.hivanov@gmail.com";
-  $emailSubject = "Ментор Мениджмънт: $subject от $name";
+  $emailSubject = "Ментор Мениджмънт: $subject от $fullName";
   
   // Format email body with proper HTML
   $htmlBody = "<html><body>"
            . "<h2>Ново съобщение от уебсайта МенторМениджмънт</h2>"
-           . "<p><strong>Име:</strong> $name</p>"
+           . "<p><strong>Име:</strong> $firstName</p>"
+           . "<p><strong>Фамилия:</strong> $lastName</p>"
            . "<p><strong>Имейл:</strong> $email</p>"
            . "<p><strong>Тема:</strong> $subject</p>"
            . "<p><strong>Съобщение:</strong></p>"
@@ -82,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // $mail->setFrom($smtpUsername, $senderName);
     // $mail->addAddress($to);
-    // $mail->addReplyTo($email, $name);
+    // $mail->addReplyTo($email, $fullName);
     
     // $mail->isHTML(true);
     // $mail->Subject = $emailSubject;
