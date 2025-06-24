@@ -24,7 +24,7 @@ interface FormErrors {
 const Contact: React.FC = () => {
   const currentTheme = colorThemes.elegant;
   const currentBackground = backgroundOptions.partnership;
-
+  
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -32,28 +32,28 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   });
-
+  
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
+    
     // First name validation
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'Името е задължително';
     } else if (formData.firstName.trim().length < 2) {
       newErrors.firstName = 'Името трябва да бъде поне 2 символа';
     }
-
+    
     // Last name validation
     if (!formData.lastName.trim()) {
       newErrors.lastName = 'Фамилията е задължителна';
     } else if (formData.lastName.trim().length < 2) {
       newErrors.lastName = 'Фамилията трябва да бъде поне 2 символа';
     }
-
+    
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
@@ -61,21 +61,21 @@ const Contact: React.FC = () => {
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Моля въведете валиден имейл адрес';
     }
-
+    
     // Subject validation
     if (!formData.subject.trim()) {
       newErrors.subject = 'Темата е задължителна';
     } else if (formData.subject.trim().length < 3) {
       newErrors.subject = 'Темата трябва да бъде поне 3 символа';
     }
-
+    
     // Message validation
     if (!formData.message.trim()) {
       newErrors.message = 'Съобщението е задължително';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Съобщението трябва да бъде поне 10 символа';
     }
-
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
       ...prev,
       [name]: value
     }));
-
+    
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
@@ -98,14 +98,14 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     if (!validateForm()) {
       return;
     }
-
+    
     setIsSubmitting(true);
     setSubmitSuccess(false);
-
+    
     try {
       // Send data to PHP script
       const response = await fetch('./contact.php', {
@@ -115,13 +115,13 @@ const Contact: React.FC = () => {
         },
         body: JSON.stringify(formData)
       });
-
+      
       const result = await response.json();
-
+      
       if (result.success) {
         setSubmitSuccess(true);
         setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
-
+        
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
@@ -140,29 +140,29 @@ const Contact: React.FC = () => {
     <div className={styles.contactContainer} style={{ backgroundImage: `url(${currentBackground})` }}>
       {/* Overlay for better text readability */}
       <div className={styles.overlay} style={{ background: currentTheme.overlay }}></div>
-
+      
       <div className={styles.mainContent}>
         <div className={styles.headerSection}>
-          <h1 className={styles.pageTitle} style={{ color: currentTheme.text }}>
+          <h1 className={styles.formTitle} style={{ color: currentTheme.text }}>
             Контакти
           </h1>
-
+          
           <div className={styles.divider} style={{ backgroundColor: currentTheme.accent }}></div>
-
-          <p className={styles.pageSubtitle} style={{ color: currentTheme.textSecondary }}>
+          
+          <p className={styles.formSubtitle} style={{ color: currentTheme.textSecondary }}>
             Свържете се с нас за консултация или повече информация
           </p>
         </div>
 
         <div className={styles.cardsSection}>
           <div className={styles.contactCard}>
-            <h3 className={styles.cardTitle} style={{ color: currentTheme.accent }}>
+            <h3 className={styles.cardTitle}>
               <FontAwesomeIcon 
                 icon={faPhone} 
                 className={styles.cardIcon}
                 style={{ color: currentTheme.accent }}
               />
-              Телефон
+              <span style={{ color: currentTheme.accent }}>Телефон</span>
             </h3>
             <p className={styles.cardText} style={{ color: currentTheme.textSecondary }}>
               0899 109 507
@@ -170,13 +170,13 @@ const Contact: React.FC = () => {
           </div>
 
           <div className={styles.contactCard}>
-            <h3 className={styles.cardTitle} style={{ color: currentTheme.accent }}>
+            <h3 className={styles.cardTitle}>
               <FontAwesomeIcon 
                 icon={faEnvelope} 
                 className={styles.cardIcon}
                 style={{ color: currentTheme.accent }}
               />
-              Имейл
+              <span style={{ color: currentTheme.accent }}>Имейл</span>
             </h3>
             <div className={styles.emailList} style={{ color: currentTheme.textSecondary }}>
               <p className={styles.emailItem}>mentor.management.mm@gmail.com</p>
@@ -190,13 +190,13 @@ const Contact: React.FC = () => {
           <h2 className={styles.formTitle} style={{ color: currentTheme.accent }}>
             Изпратете ни съобщение
           </h2>
-
+          
           {submitSuccess && (
             <div className={styles.successMessage}>
               ✅ Съобщението беше изпратено успешно! Ще се свържем с вас скоро.
             </div>
           )}
-
+          
           {submitSuccess && (
             <div className={styles.successMessageAlt}>
               <div className={styles.successIcon}>
@@ -209,11 +209,11 @@ const Contact: React.FC = () => {
               </p>
             </div>
           )}
-
+          
           <form onSubmit={handleSubmit} className={styles.contactForm}>
             <div className={styles.formRow}>
               {/* First Name Field */}
-              <div className={styles.formGroup}>
+              <div>
                 <input
                   type="text"
                   id="firstName"
@@ -236,9 +236,9 @@ const Contact: React.FC = () => {
                   </p>
                 )}
               </div>
-
+              
               {/* Last Name Field */}
-              <div className={styles.formGroup}>
+              <div>
                 <input
                   type="text"
                   id="lastName"
@@ -262,7 +262,7 @@ const Contact: React.FC = () => {
                 )}
               </div>
             </div>
-
+            
             {/* Email Field */}
             <div className={styles.formGroup}>
               <input
@@ -287,11 +287,12 @@ const Contact: React.FC = () => {
                 </p>
               )}
             </div>
-
+            
             {/* Subject Field */}
             <div className={styles.formGroup}>
               <input
                 type="text"
+                id="subject"
                 name="subject"
                 placeholder="Тема (относно)"
                 value={formData.subject}
@@ -311,13 +312,13 @@ const Contact: React.FC = () => {
                 </p>
               )}
             </div>
-
+            
             {/* Message Field */}
             <div className={styles.formGroup}>
               <textarea
+                id="message"
                 name="message"
                 placeholder="Съобщение"
-                rows={5}
                 value={formData.message}
                 onChange={handleInputChange}
                 className={`${styles.formTextarea} ${errors.message ? styles.errorInput : ''}`}
@@ -335,7 +336,7 @@ const Contact: React.FC = () => {
                 </p>
               )}
             </div>
-
+            
             <button 
               type="submit" 
               disabled={isSubmitting}
@@ -355,7 +356,7 @@ const Contact: React.FC = () => {
           </form>
         </div>
       </div>
-
+      
       <Footer />
     </div>
   );
