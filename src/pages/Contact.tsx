@@ -57,9 +57,9 @@ const Contact: React.FC = () => {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = 'Имейлът е задължителен';
+      newErrors.email = 'Email-ът е задължителен';
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Моля въведете валиден имейл адрес';
+      newErrors.email = 'Моля въведете валиден email адрес';
     }
 
     // Subject validation
@@ -176,7 +176,7 @@ const Contact: React.FC = () => {
                 className={styles.cardIcon}
                 style={{ color: currentTheme.accent }}
               />
-              Имейл
+              Email
             </h3>
             <div className={styles.emailList} style={{ color: currentTheme.textSecondary }}>
               <p className={styles.emailItem}>mentor.management.mm@gmail.com</p>
@@ -269,7 +269,7 @@ const Contact: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Имейл"
+                placeholder="Email"
                 value={formData.email}
                 onChange={handleInputChange}
                 className={`${styles.formInput} ${errors.email ? styles.errorInput : ''}`}
