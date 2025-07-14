@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { colorThemes } from '../utils/backgroundOptions';
+import MMLogoHeader from '../assets/images/MMLogoHeader.png';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -101,13 +102,20 @@ const Navigation: React.FC = () => {
           to="/"
           className="nav-brand"
           style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            color: theme.text,
             textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          Mentor Management
+          <img 
+            src={MMLogoHeader} 
+            alt="Mentor Management" 
+            style={{
+              height: '40px',
+              width: 'auto',
+              objectFit: 'contain',
+            }}
+          />
         </Link>
 
         <div style={{
