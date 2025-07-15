@@ -36,8 +36,8 @@
 .homeCard {
   width: 90%;
   max-width: 900px;
-  background: #ffffff; /* Pure white background */
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.96);
+  /* backdrop-filter: blur(10px); */
   border-radius: 20px;
   box-shadow: 
     0 20px 40px -10px rgba(0, 0, 0, 0.12),
@@ -190,9 +190,9 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
   }
 }
