@@ -7,6 +7,7 @@
   position: relative;
   z-index: 10;
   pointer-events: auto;
+
 }
 
 .container {
@@ -60,6 +61,7 @@
   margin: 0.5rem 0;
   user-select: text;
   cursor: text;
+  font-weight: 600;
 }
 
 .contactLink {
@@ -75,7 +77,7 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(15px);
+  /* backdrop-filter: blur(15px); */
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.4rem 0;
   text-align: center;

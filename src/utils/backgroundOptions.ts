@@ -163,11 +163,11 @@ export const colorThemes = {
     primary: 'rgba(255, 255, 255, 0.95)',     // Much whiter for prominence
     secondary: 'rgba(255, 255, 255, 0.95)',   // More visible white secondary elements
     accent: '#ff0000',                         // Logo red for brand consistency
-    overlay: 'rgba(255, 255, 255, 0.5)',      // Whiter glass overlay
-    text: '#0f172a',                           // Very dark slate for main content
-    textSecondary: '#334155',                  // Dark slate gray for secondary text
-    headerBackground: 'rgba(255, 255, 255, 1)', // Much whiter header
-    footerBackground: 'rgba(255, 255, 255, 1)'   // Whiter footer
+    overlay: 'rgba(255, 255, 255, 0.15)',      // Whiter glass overlay
+    text: '#000000',                           // Pure black for main content
+    textSecondary: '#000000',                  // Pure black for secondary text
+    headerBackground: 'rgba(255, 255, 255, 0.0)', // Much whiter header
+    footerBackground: 'rgba(0, 0, 0, 0.00)'   // Very transparent white footer
   }
 };
 

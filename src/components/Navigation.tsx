@@ -22,7 +22,7 @@ const Navigation: React.FC = () => {
       right: 0,
       zIndex: 1000,
       background: theme.headerBackground,
-      backdropFilter: 'blur(10px)',
+      backdropFilter: 'blur(14px)',
       borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
       padding: '1rem 0',
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
