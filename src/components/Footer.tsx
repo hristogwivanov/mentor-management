@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { defaultTheme } from '../utils/backgroundOptions';
 import styles from './Footer.module.css';
+import MMLogo from '../assets/images/MM.png';
 
 const Footer: React.FC = () => {
   const currentTheme = defaultTheme;
@@ -26,21 +27,17 @@ const Footer: React.FC = () => {
       >
         <div className={styles.container}>
           <div className={styles.gridContainer}>
-            {/* Company Info */}
+            {/* Company Logo */}
             <div>
-              <h3
-                className={styles.sectionTitle}
-                style={{ color: currentTheme.accent }}
-              >
-                Mentor Management
-              </h3>
-              <p
-                className={styles.sectionText}
-                style={{ color: currentTheme.textSecondary }}
-              >
-                Професионална платформа за менторство и управление на бизнес
-                процеси
-              </p>
+              <img 
+                src={MMLogo} 
+                alt="MM Logo" 
+                style={{ 
+                  height: '10rem', 
+                  width: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
             </div>
 
             {/* Quick Links */}
