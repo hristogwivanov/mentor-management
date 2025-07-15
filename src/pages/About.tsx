@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { backgroundOptions, colorThemes } from '../utils/backgroundOptions';
+import { backgroundOptions, defaultTheme } from '../utils/backgroundOptions';
 import Footer from '../components/Footer';
 import styles from './About.module.css';
 
@@ -19,7 +19,7 @@ import cert12 from '../assets/images/certificates/Удостоверение з�
 import cert13 from '../assets/images/certificates/диплома за ОНС доктор.png';
 
 const About: React.FC = () => {
-  const currentTheme = colorThemes.elegant;
+  const currentTheme = defaultTheme;
   const currentBackground = backgroundOptions.workspace;
   const [selectedCertificateIndex, setSelectedCertificateIndex] = useState<number | null>(null);
 
@@ -80,12 +80,13 @@ const About: React.FC = () => {
   }, [selectedCertificateIndex]);
 
   return (
-    <div 
-      className={styles.container}
-      style={{
-        backgroundImage: `url(${currentBackground})`,
-      }}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div 
+        className={styles.container}
+        style={{
+          backgroundImage: `url(${currentBackground})`,
+        }}
+      >
 
       
       {/* Overlay for better text readability */}
@@ -277,6 +278,8 @@ const About: React.FC = () => {
           </div>
         </div>
       )}
+      </div>
+      
       <Footer />
     </div>
   );

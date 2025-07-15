@@ -6,64 +6,37 @@ import {
   faPhone,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { colorThemes } from "../utils/backgroundOptions";
+import { defaultTheme } from '../utils/backgroundOptions';
+import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
-  const currentTheme = colorThemes.elegant;
+  const currentTheme = defaultTheme;
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       {/* Main Footer Content */}
       <footer
+        className={styles.footer}
         style={{
-          background: "rgba(0, 0, 0, 0.8)",
-          backdropFilter: "blur(10px)",
-          borderTop: `1px solid rgba(255, 255, 255, 0.1)`,
-          padding: "2rem 0",
-          paddingBottom: "4rem", // Extra space for sticky copyright
-          marginTop: "40px",
+          background: currentTheme.footerBackground,
           color: currentTheme.text,
-          position: "relative",
-          zIndex: 10,
-          pointerEvents: "auto",
+          paddingBottom: "2rem" /* Standard padding */
         }}
       >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 2rem",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "2rem",
-            }}
-          >
+        <div className={styles.container}>
+          <div className={styles.gridContainer}>
             {/* Company Info */}
             <div>
               <h3
-                style={{
-                  color: currentTheme.accent,
-                  marginBottom: "1rem",
-                  fontSize: "1.2rem",
-                  fontWeight: "600",
-                }}
+                className={styles.sectionTitle}
+                style={{ color: currentTheme.accent }}
               >
                 Mentor Management
               </h3>
               <p
-                style={{
-                  color: currentTheme.textSecondary,
-                  fontSize: "0.9rem",
-                  lineHeight: "1.6",
-                  userSelect: "text",
-                  cursor: "text",
-                }}
+                className={styles.sectionText}
+                style={{ color: currentTheme.textSecondary }}
               >
                 Професионална платформа за менторство и управление на бизнес
                 процеси
@@ -82,62 +55,32 @@ const Footer: React.FC = () => {
               >
                 Бързи връзки
               </h4>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
-              >
+              <div className={styles.linkContainer}>
                 <Link
                   to="/"
-                  style={{
-                    color: currentTheme.textSecondary,
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    transition: "color 0.3s ease",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
+                  className={styles.footerLink}
+                  style={{ color: currentTheme.textSecondary }}
                 >
                   Начало
                 </Link>
                 <Link
                   to="/about"
-                  style={{
-                    color: currentTheme.textSecondary,
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    transition: "color 0.3s ease",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
+                  className={styles.footerLink}
+                  style={{ color: currentTheme.textSecondary }}
                 >
                   За нас
                 </Link>
                 <Link
                   to="/services"
-                  style={{
-                    color: currentTheme.textSecondary,
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    transition: "color 0.3s ease",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
+                  className={styles.footerLink}
+                  style={{ color: currentTheme.textSecondary }}
                 >
                   Услуги
                 </Link>
                 <Link
                   to="/contact"
-                  style={{
-                    color: currentTheme.textSecondary,
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    transition: "color 0.3s ease",
-                    cursor: "pointer",
-                    userSelect: "none",
-                  }}
+                  className={styles.footerLink}
+                  style={{ color: currentTheme.textSecondary }}
                 >
                   Контакт
                 </Link>
@@ -163,103 +106,60 @@ const Footer: React.FC = () => {
                   lineHeight: "1.6",
                 }}
               >
-                <p
-                  style={{
-                    margin: "0.5rem 0",
-                    userSelect: "text",
-                    cursor: "text",
-                  }}
-                >
+                <p className={styles.contactItem}>
                   <FontAwesomeIcon icon={faEnvelope} />{" "}
                   <a
                     href="mailto:mentor.management.mm@gmail.com"
-                    style={{
-                      color: currentTheme.textSecondary,
-                      textDecoration: "none",
-                      cursor: "pointer",
-                      transition: "color 0.3s ease",
-                    }}
+                    className={styles.contactLink}
+                    style={{ color: currentTheme.textSecondary }}
                   >
                     mentor.management.mm@gmail.com
                   </a>
                 </p>
-                <p
-                  style={{
-                    margin: "0.5rem 0",
-                    userSelect: "text",
-                    cursor: "text",
-                  }}
-                >
+                <p className={styles.contactItem}>
                   <FontAwesomeIcon icon={faEnvelope} />{" "}
                   <a
                     href="mailto:office@mentor-management.eu"
-                    style={{
-                      color: currentTheme.textSecondary,
-                      textDecoration: "none",
-                      cursor: "pointer",
-                      transition: "color 0.3s ease",
-                    }}
+                    className={styles.contactLink}
+                    style={{ color: currentTheme.textSecondary }}
                   >
                     office@mentor-management.eu
                   </a>
                 </p>
-                <p
-                  style={{
-                    margin: "0.5rem 0",
-                    userSelect: "text",
-                    cursor: "text",
-                  }}
-                >
+                <p className={styles.contactItem}>
                   <FontAwesomeIcon icon={faEnvelope} />{" "}
                   <a
                     href="mailto:v.kostova@mentor-management.eu"
-                    style={{
-                      color: currentTheme.textSecondary,
-                      textDecoration: "none",
-                      cursor: "pointer",
-                      transition: "color 0.3s ease",
-                    }}
+                    className={styles.contactLink}
+                    style={{ color: currentTheme.textSecondary }}
                   >
                     v.kostova@mentor-management.eu
                   </a>
                 </p>
-                <p
-                  style={{
-                    margin: "0.5rem 0",
-                    userSelect: "text",
-                    cursor: "text",
-                  }}
-                >
+                <p className={styles.contactItem}>
                   <FontAwesomeIcon icon={faPhone} />{" "}
                   <a
                     href="tel:+359212345678"
-                    style={{
-                      color: currentTheme.textSecondary,
-                      textDecoration: "none",
-                      cursor: "pointer",
-                      transition: "color 0.3s ease",
-                    }}
+                    className={styles.contactLink}
+                    style={{ color: currentTheme.textSecondary }}
                   >
                     0899 109 507
                   </a>
                 </p>
-                <p
-                  style={{
-                    margin: "0.5rem 0",
-                    userSelect: "text",
-                    cursor: "text",
-                  }}
-                >
+                <p className={styles.contactItem}>
                   <FontAwesomeIcon icon={faMapMarkerAlt} /> Варна, България
                 </p>
               </div>
             </div>
           </div>
+          
+          {/* No additional spacer needed */}
         </div>
 
+        {/* Add hover effect through JSX */}
         <style>
           {`
-            footer a:hover {
+            .${styles.footerLink}:hover, .${styles.contactLink}:hover {
               color: ${currentTheme.accent} !important;
             }
             
@@ -271,30 +171,8 @@ const Footer: React.FC = () => {
       </footer>
 
       {/* Sticky Copyright Section */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: "rgba(0, 0, 0, 0.9)",
-          backdropFilter: "blur(15px)",
-          borderTop: `1px solid rgba(255, 255, 255, 0.1)`,
-          padding: "0.75rem 0",
-          textAlign: "center",
-          zIndex: 1000,
-          pointerEvents: "auto",
-        }}
-      >
-        <p
-          style={{
-            color: currentTheme.textSecondary,
-            fontSize: "0.85rem",
-            margin: 0,
-            userSelect: "text",
-            cursor: "text",
-          }}
-        >
+      <div className={styles.copyrightContainer}>
+        <p className={styles.copyrightText}>
           &copy; {currentYear} Mentor Management. Всички права запазени.
         </p>
       </div>

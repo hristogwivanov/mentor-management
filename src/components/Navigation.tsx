@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { colorThemes } from '../utils/backgroundOptions';
+import { defaultTheme } from '../utils/backgroundOptions';
 import MMLogoHeader from '../assets/images/MMLogoHeader.png';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
-  const theme = colorThemes.elegant;
+  const theme = defaultTheme;
 
   const navItems = [
     { path: '/', label: 'Начало' },
@@ -21,9 +21,9 @@ const Navigation: React.FC = () => {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'rgba(26, 26, 26, 0.95)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
+      background: theme.headerBackground,
+      backdropFilter: 'blur(10px)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
       padding: '1rem 0',
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       animation: 'slideInFromTop 0.8s ease-out',
@@ -111,7 +111,7 @@ const Navigation: React.FC = () => {
             src={MMLogoHeader} 
             alt="Mentor Management" 
             style={{
-              height: '40px',
+              height: '50px',
               width: 'auto',
               objectFit: 'contain',
             }}
@@ -128,11 +128,12 @@ const Navigation: React.FC = () => {
               to={item.path}
               className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
               style={{
-                color: location.pathname === item.path ? theme.accent : theme.textSecondary,
+                color: location.pathname === item.path ? theme.accent : theme.text,
                 textDecoration: 'none',
-                fontWeight: location.pathname === item.path ? '600' : '400',
-                fontSize: '1rem',
+                fontWeight: location.pathname === item.path ? '700' : '600',
+                fontSize: '1.2rem',
                 paddingBottom: '0.25rem',
+                letterSpacing: '0.5px',
               }}
             >
               {item.label}

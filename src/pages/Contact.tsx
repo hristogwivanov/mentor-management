@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { colorThemes, backgroundOptions } from '../utils/backgroundOptions';
+import { backgroundOptions, defaultTheme } from '../utils/backgroundOptions';
 import Footer from '../components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +22,7 @@ interface FormErrors {
 }
 
 const Contact: React.FC = () => {
-  const currentTheme = colorThemes.elegant;
+  const currentTheme = defaultTheme;
   const currentBackground = backgroundOptions.partnership;
 
   const [formData, setFormData] = useState<FormData>({
@@ -137,7 +137,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className={styles.contactContainer} style={{ backgroundImage: `url(${currentBackground})` }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div className={styles.contactContainer} style={{ backgroundImage: `url(${currentBackground})` }}>
       {/* Overlay for better text readability */}
       <div className={styles.overlay} style={{ background: currentTheme.overlay }}></div>
 
@@ -355,7 +356,8 @@ const Contact: React.FC = () => {
           </form>
         </div>
       </div>
-
+      </div>
+      
       <Footer />
     </div>
   );

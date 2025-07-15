@@ -1,0 +1,94 @@
+/* Footer Styles */
+.footer {
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 0;
+  padding-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem; /* Add margin at the bottom of the grid container */
+}
+
+.sectionTitle {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.subheading {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sectionText {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  user-select: text;
+  cursor: text;
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerLink {
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.contactItem {
+  margin: 0.5rem 0;
+  user-select: text;
+  cursor: text;
+}
+
+.contactLink {
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Copyright Section */
+.copyrightContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0;
+  text-align: center;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.copyrightText {
+  color: #faebd7; /* Antiquewhite text for copyright */
+  font-size: 0.85rem;
+  margin: 0;
+  user-select: text;
+  cursor: text;
+}
+
+/* Footer link hover effect is implemented through JSX */

@@ -4,11 +4,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   padding-top: 80px;
   box-sizing: border-box;
 }
@@ -33,69 +32,87 @@
   padding-bottom: 2rem;
 }
 
-/* Home card */
+/* Enhanced Home card with glass morphism */
 .homeCard {
   width: 90%;
-  max-width: 800px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  padding: 3rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 900px;
+  background: #ffffff; /* Pure white background */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  padding: 4rem 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   text-align: center;
   z-index: 2;
   animation: fadeInUp 1s ease-out 0.3s both;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Home title */
+/* Enhanced Home title */
 .homeTitle {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1.2s ease-out 0.5s both;
 }
 
-/* Home divider */
+/* Enhanced Home divider */
 .homeDivider {
-  width: 6rem;
-  height: 0.25rem;
-  margin: 0 auto 2rem;
+  width: 8rem;
+  height: 0.3rem;
+  margin: 0 auto 2.5rem;
   border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
   animation: fadeInUp 1.4s ease-out 0.7s both;
 }
 
-/* Home description */
+/* Enhanced Home description */
 .homeDescription {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 1.35rem;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1.6s ease-out 0.9s both;
 }
 
-/* Home buttons container */
+/* Enhanced Home buttons container */
 .homeButtons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 3rem;
   animation: fadeInUp 1.8s ease-out 1.1s both;
 }
 
-/* Primary button */
+/* Enhanced Primary button */
 .btnPrimary {
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
   border: none;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(255, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
 }
 
 .btnPrimary:hover {
@@ -107,19 +124,24 @@
   transform: translateY(-1px) scale(1.02);
 }
 
-/* Secondary button */
+/* Enhanced Secondary button */
 .btnSecondary {
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden; /* Match the primary button */
+  overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
 }
 
 .btnSecondary:hover {

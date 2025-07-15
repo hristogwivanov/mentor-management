@@ -1,12 +1,12 @@
 import React from 'react';
-import { backgroundOptions, colorThemes } from '../utils/backgroundOptions';
+import { backgroundOptions, defaultTheme } from '../utils/backgroundOptions';
 import Footer from '../components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faCogs, faGraduationCap, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import styles from './Services.module.css';
 
 const Services: React.FC = () => {
-  const currentTheme = colorThemes.elegant;
+  const currentTheme = defaultTheme;
   const currentBackground = backgroundOptions.corporate;
 
   const services = [
@@ -37,12 +37,13 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div 
-      className={styles.container}
-      style={{
-        backgroundImage: `url(${currentBackground})`,
-      }}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div 
+        className={styles.container}
+        style={{
+          backgroundImage: `url(${currentBackground})`,
+        }}
+      >
 
       
       {/* Overlay for better text readability */}
@@ -141,6 +142,8 @@ const Services: React.FC = () => {
           ))}
         </div>
       </div>
+      </div>
+      
       <Footer />
     </div>
   );
