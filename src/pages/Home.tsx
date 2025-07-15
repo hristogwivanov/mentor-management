@@ -31,72 +31,70 @@ const Home: React.FC = () => {
   }, [currentTheme]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <div className={styles.homeContainer} style={{
-        backgroundImage: `url(${currentBackground})`
-      }}>
-        {/* Overlay for better text readability */}
-        <div className={styles.overlay} style={{
-          background: currentTheme.overlay
-        }}></div>
-        
-        {/* Main content area */}
-        <div className={styles.mainContent}>
-          <div className={styles.homeCard}>
-            <h1 
-              className={styles.homeTitle}
-              style={{ 
-                color: currentTheme.text
+    <div className={styles.homeContainer} style={{
+      backgroundImage: `url(${currentBackground})`
+    }}>
+      {/* Overlay for better text readability */}
+      <div className={styles.overlay} style={{
+        background: currentTheme.overlay
+      }}></div>
+      
+      {/* Main content area */}
+      <div className={styles.mainContent}>
+        <div className={styles.homeCard}>
+          <h1 
+            className={styles.homeTitle}
+            style={{ 
+              color: currentTheme.text
+            }}
+          >
+            Добре дошли в Mentor Management
+          </h1>
+          
+          <div 
+            className={styles.homeDivider}
+            style={{ 
+              backgroundColor: currentTheme.accent
+            }}
+          ></div>
+          
+          <p 
+            className={styles.homeDescription}
+            style={{ 
+              color: currentTheme.textSecondary
+            }}
+          >
+            Професионална платформа за менторство и управление на бизнес процеси. 
+            Помагаме на компании да развият своя потенциал чрез експертно менторство.
+          </p>
+          
+          <div className={styles.homeButtons}>
+            <Link 
+              to="/about"
+              className={styles.btnPrimary}
+              style={{
+                background: currentTheme.accent,
+                color: currentTheme.primary
               }}
             >
-              Добре дошли в Mentor Management
-            </h1>
+              Научете повече
+            </Link>
             
-            <div 
-              className={styles.homeDivider}
-              style={{ 
-                backgroundColor: currentTheme.accent
-              }}
-            ></div>
-            
-            <p 
-              className={styles.homeDescription}
-              style={{ 
-                color: currentTheme.textSecondary
+            <Link 
+              to="/contact"
+              className={styles.btnSecondary}
+              style={{
+                color: currentTheme.text,
+                border: `2px solid ${currentTheme.text}`
               }}
             >
-              Професионална платформа за менторство и управление на бизнес процеси. 
-              Помагаме на компании да развият своя потенциал чрез експертно менторство.
-            </p>
-            
-            <div className={styles.homeButtons}>
-              <Link 
-                to="/about"
-                className={styles.btnPrimary}
-                style={{
-                  background: currentTheme.accent,
-                  color: currentTheme.primary
-                }}
-              >
-                Научете повече
-              </Link>
-              
-              <Link 
-                to="/contact"
-                className={styles.btnSecondary}
-                style={{
-                  color: currentTheme.text,
-                  border: `2px solid ${currentTheme.text}`
-                }}
-              >
-                Свържете се с нас
-              </Link>
-            </div>
+              Свържете се с нас
+            </Link>
           </div>
         </div>
       </div>
       
-      {/* Footer with proper layout */}
+      {/* Footer at the bottom */}
       <Footer />
     </div>
   );

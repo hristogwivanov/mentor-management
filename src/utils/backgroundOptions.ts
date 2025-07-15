@@ -166,8 +166,8 @@ export const colorThemes = {
     overlay: 'rgba(255, 255, 255, 0.15)',      // Whiter glass overlay
     text: '#000000',                           // Pure black for main content
     textSecondary: '#000000',                  // Pure black for secondary text
-    headerBackground: 'rgba(255, 255, 255, 0.0)', // Much whiter header
-    footerBackground: 'rgba(0, 0, 0, 0.00)'   // Very transparent white footer
+    headerBackground: 'rgba(255, 255, 255, 0.8)', // Much whiter header
+    footerBackground: 'rgba(255, 255, 255, 1)'   // Very transparent white footer
   }
 };
 
