@@ -131,20 +131,21 @@ const About: React.FC = () => {
         </div>
 
         {/* Certificates Gallery */}
-        <div className={styles.certificatesGallery}>
-          <h2 
-            className={styles.sectionTitle}
-            style={{ color: currentTheme.text }}
-          >
-            Сертификати и Препоръки
-          </h2>
-          
-          <div 
-            className={styles.sectionDivider}
-            style={{ backgroundColor: currentTheme.accent }}
-          ></div>
-          
-          <div className={styles.certificatesGrid}>
+        <div className={styles.certificatesContent}>
+          <div className={styles.certificatesGallery}>
+            <h2 
+              className={styles.sectionTitle}
+              style={{ color: currentTheme.text }}
+            >
+              Сертификати и Препоръки
+            </h2>
+            
+            <div 
+              className={styles.sectionDivider}
+              style={{ backgroundColor: currentTheme.accent }}
+            ></div>
+            
+            <div className={styles.certificatesGrid}>
             {certificates.map((certificate, index) => (
               <div
                 key={index}
@@ -168,6 +169,7 @@ const About: React.FC = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
 
       {/* Modal for full-size certificate viewing */}

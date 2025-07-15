@@ -55,7 +55,8 @@ const Services: React.FC = () => {
       ></div>
       
       <div className={styles.contentWrapper}>
-        <div className={styles.servicesHeader}>
+        <div className={styles.servicesContent}>
+          <div className={styles.servicesHeader}>
           <h1 
             className={styles.pageTitle}
             style={{ color: currentTheme.text }}
@@ -140,6 +141,7 @@ const Services: React.FC = () => {
               </ul>
             </div>
           ))}
+        </div>
         </div>
       </div>
       </div>
