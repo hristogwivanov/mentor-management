@@ -34,6 +34,17 @@
   position: relative;
 }
 
+/* Contact content wrapper with balloon styling */
+.contactContent {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 0.8s ease-out;
+}
+
 @media (max-width: 768px) {
   .mainContent {
     flex-direction: column;
@@ -76,8 +87,8 @@
 
 /* Contact card */
 .contactCard {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
   border-radius: 12px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   padding: 2rem;
@@ -94,8 +105,8 @@
 
 /* Form card */
 .formCard {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
   border-radius: 12px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   padding: 2.5rem;
@@ -283,11 +294,11 @@
 
 /* Form inputs */
 .formInput {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #5f636d;
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: #ffffff;
+  color: #353d4b;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -296,17 +307,22 @@
 }
 
 .formInput:focus {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: #FF0000;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.formInput::placeholder {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /* TextArea for message */
 .formTextarea {
   height: 150px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #6B7280;
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  color: #ffffff;
+  color: #374151;
   font-size: 1rem;
   resize: vertical;
   transition: all 0.3s ease;
@@ -316,9 +332,12 @@
 }
 
 .formTextarea:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-width: 2px;
+  border-color: #FF0000;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.formTextarea::placeholder {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /* Error message */
@@ -347,9 +366,9 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-2px) scale(1.04);
   animation: pulseGlow 1.5s ease-in-out infinite;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
 }
 
 .submitButton:active:not(:disabled) {
@@ -409,9 +428,20 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
