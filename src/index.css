@@ -80,3 +80,8 @@ input, textarea {
 input::placeholder, textarea::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
+
+ul li {
+  list-style-type: disc;
+  margin-left: 1.4rem;
+}
