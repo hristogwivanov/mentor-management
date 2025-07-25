@@ -3,15 +3,12 @@ import { backgroundOptions, defaultTheme } from "../utils/backgroundOptions";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAward,
-  faBalanceScale,
-  faCogs,
-  faGraduationCap,
-  faLightbulb,
-  faSitemap,
   faStar,
   faUsers,
+  faBalanceScale,
   faUserTie,
+  faAward,
+  faSitemap,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Services.module.css";
 
@@ -175,13 +172,21 @@ const Services: React.FC = () => {
 
               <div className={styles.needsSection}>
                 {needs.map((need, index) => (
-                  <div key={index} className={styles.needsListCard}>
-                    <h2
-                      className={styles.needsTitle}
-                      style={{ color: currentTheme.text }}
-                    >
-                      {need.title}
-                    </h2>
+                  <div key={index} className={`${styles.needsListCard} ${styles.needsCardWithImage}`}>
+                    <div className={`${styles.needsImageContainer} ${styles.imagePositionRight}`}>
+                      <img 
+                        src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=300&h=400&fit=crop" 
+                        alt="Strategic planning and professional consultation tools"
+                        className={styles.needsImage}
+                      />
+                    </div>
+                    <div className={styles.needsContent}>
+                      <h2
+                        className={styles.needsTitle}
+                        style={{ color: currentTheme.text }}
+                      >
+                        {need.title}
+                      </h2>
                     <ul className={styles.featuresList}>
                       {need.features.map((feature, featureIndex) => (
                         <li
@@ -215,19 +220,28 @@ const Services: React.FC = () => {
                       Ние от „Ментор Мениджмънт ММ“ ЕООД можем да Ви предложим
                       работещи решения.
                     </h2>
+                    </div>
                   </div>
                 ))}
               </div>
 
               <div className={styles.needsSection}>
                 {organizationalChallenges.map((challenge, index) => (
-                  <div key={index} className={styles.needsListCard}>
-                    <h2
-                      className={styles.needsTitle}
-                      style={{ color: currentTheme.text }}
-                    >
-                      {challenge.title}
-                    </h2>
+                  <div key={index} className={`${styles.needsListCard} ${styles.needsCardWithImage}`}>
+                    <div className={`${styles.needsImageContainer} ${styles.imagePositionLeft}`}>
+                      <img 
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=400&fit=crop" 
+                        alt="Business growth and organizational development"
+                        className={styles.needsImage}
+                      />
+                    </div>
+                    <div className={styles.needsContent}>
+                      <h2
+                        className={styles.needsTitle}
+                        style={{ color: currentTheme.text }}
+                      >
+                        {challenge.title}
+                      </h2>
                     <ul className={styles.featuresList}>
                       {challenge.features.map((feature, featureIndex) => (
                         <li
@@ -260,19 +274,28 @@ const Services: React.FC = () => {
                     >
                       {challenge.conclusion}
                     </h2>
+                    </div>
                   </div>
                 ))}
               </div>
 
               <div className={styles.needsSection}>
                 {productPortfolio.map((portfolio, index) => (
-                  <div key={index} className={styles.needsListCard}>
-                    <h2
-                      className={styles.needsTitle}
-                      style={{ color: currentTheme.text }}
-                    >
-                      {portfolio.title}
-                    </h2>
+                  <div key={index} className={`${styles.needsListCard} ${styles.needsCardWithImage}`}>
+                    <div className={`${styles.needsImageContainer} ${styles.imagePositionRight}`}>
+                      <img 
+                        src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=300&h=400&fit=crop" 
+                        alt="Professional business solutions and consulting services"
+                        className={styles.needsImage}
+                      />
+                    </div>
+                    <div className={styles.needsContent}>
+                      <h2
+                        className={styles.needsTitle}
+                        style={{ color: currentTheme.text }}
+                      >
+                        {portfolio.title}
+                      </h2>
                     <ul className={styles.featuresList}>
                       {portfolio.features.map((feature, featureIndex) => (
                         <li
@@ -305,6 +328,7 @@ const Services: React.FC = () => {
                     >
                       {portfolio.conclusion}
                     </h2>
+                    </div>
                   </div>
                 ))}
               </div>
