@@ -16,7 +16,8 @@ import cert9 from "../assets/images/certificates/Удостоверение за
 import cert10 from "../assets/images/certificates/Удостоверение Медиация за възстановяване на отношения.png";
 import cert11 from "../assets/images/certificates/Удостоверение за специализация-Бизнес медиация.png";
 import cert12 from "../assets/images/certificates/Удостоверение за специализация-Медиация на работното място.png";
-import cert13 from "../assets/images/certificates/диплома за ОНС доктор.png";
+import cert13 from "../assets/images/certificates/Удостоверение за специализация-Медиация между деца-родители-учители.jpg";
+import cert14 from "../assets/images/certificates/диплома за ОНС доктор.png";
 
 const About: React.FC = () => {
   const currentTheme = defaultTheme;
@@ -38,7 +39,8 @@ const About: React.FC = () => {
     { src: cert10, title: "Медиация за възстановяване на отношения" },
     { src: cert11, title: "Специализация Бизнес медиация" },
     { src: cert12, title: "Специализация Медиация на работното място" },
-    { src: cert13, title: "Диплома за ОНС доктор" },
+    { src: cert13, title: "Специализация Медиация между деца-родители-учители" },
+    { src: cert14, title: "Диплома за ОНС доктор" },
   ];
 
   const goToPrevious = () => {
