@@ -144,16 +144,31 @@ const About: React.FC = () => {
               <br />
               Доктор Велислава Костова е:
             </p>
-            <ul
-              className={styles.featuresList}
-              style={{ color: currentTheme.textSecondary }}
-            >
-                <li>
+            <ul className={styles.featuresList}>
+                <li
+                  className={styles.featureItem}
+                  style={{ color: currentTheme.textSecondary }}
+                >
+                  <span
+                    className={styles.featureBullet}
+                    style={{ color: currentTheme.accent }}
+                  >
+                    •
+                  </span>
                   сертифициран медиатор с редица специализации, в това число по
                   медиация на работното място, медиация за възстановяване на
                   отношения и бизнес медиация
                 </li>
-                <li>
+                <li
+                  className={styles.featureItem}
+                  style={{ color: currentTheme.textSecondary }}
+                >
+                  <span
+                    className={styles.featureBullet}
+                    style={{ color: currentTheme.accent }}
+                  >
+                    •
+                  </span>
                   сертифициран НЛП личен и бизнес коуч, което подпомага работата
                   и при изграждане и трансформиране на личностни и екипни модели
                   на поведение.
@@ -169,8 +184,308 @@ const About: React.FC = () => {
             <br />
             <p>
               <em>Корпоративно послание</em><br />
-              С мъдрост в управлението и с мисъл за бъдещото!
+              С мъдрост в управлението и с мисъл за бъдещето!
             </p>
+          </div>
+
+          {/* Users and Services Section */}
+          <div className={styles.aboutContent} style={{ marginTop: '3rem' }}>
+            <h2
+              className={styles.sectionTitle}
+              style={{ color: currentTheme.text }}
+            >
+              Кои могат да ползват услугите ни?
+            </h2>
+
+            <div
+              className={styles.sectionDivider}
+              style={{ backgroundColor: currentTheme.accent }}
+            ></div>
+
+            <p
+              className={styles.mainText}
+              style={{ color: currentTheme.textSecondary, marginBottom: '1.5rem' }}
+            >
+              Ползватели на продуктите и услугите на "Ментор Мениджмънт ММ" ЕООД могат да бъдат:
+            </p>
+
+            <ul className={styles.featuresList}>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Мениджъри на екипи, в това число:
+                <ul className={styles.featuresList} style={{ marginTop: '0.5rem', marginLeft: '1.5rem' }}>
+                  <li
+                    className={styles.featureItem}
+                    style={{ color: currentTheme.textSecondary }}
+                  >
+                    <span
+                      className={styles.featureBullet}
+                      style={{ color: currentTheme.accent }}
+                    >
+                      •
+                    </span>
+                    Топ-мениджъри
+                  </li>
+                  <li
+                    className={styles.featureItem}
+                    style={{ color: currentTheme.textSecondary }}
+                  >
+                    <span
+                      className={styles.featureBullet}
+                      style={{ color: currentTheme.accent }}
+                    >
+                      •
+                    </span>
+                    Мениджъри на различни йерархични нива в структурата на организацията
+                  </li>
+                </ul>
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Отделни служители
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Различни групи в организацията
+              </li>
+            </ul>
+
+            <h3
+              style={{ 
+                color: currentTheme.text, 
+                fontSize: '1.5rem', 
+                marginTop: '2.5rem', 
+                marginBottom: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              Как можем да ви помогнем?
+            </h3>
+
+            <p
+              className={styles.mainText}
+              style={{ color: currentTheme.textSecondary, marginBottom: '1.5rem' }}
+            >
+              Екипът на "Ментор Мениджмънт ММ" ЕООД може да ви съдейства за:
+            </p>
+
+            <ul className={styles.featuresList}>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Изграждането на хармонична работна среда, без конфликти и без напрежение при изпълняване на служебните задължения
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Получаване на признание за полаганите от вас усилия
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Изграждане на доверие между хора и екипи
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Постигане на увереност в собствените си възможности
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Изграждане на оптимална организационна структура на Вашата организация или екип
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Подобряване на основни бизнес процеси
+              </li>
+            </ul>
+          </div>
+
+          {/* Trust and Results Section */}
+          <div className={styles.aboutContent} style={{ marginTop: '3rem' }}>
+            <h2
+              className={styles.sectionTitle}
+              style={{ color: currentTheme.text }}
+            >
+              Доверие и резултати:
+            </h2>
+
+            <div
+              className={styles.sectionDivider}
+              style={{ backgroundColor: currentTheme.accent }}
+            ></div>
+
+            <p
+              className={styles.mainText}
+              style={{ color: currentTheme.textSecondary, marginBottom: '1.5rem' }}
+            >
+              Един от нашите клиенти е "Ди Ай Ес" ЕООД, където изпълнихме цялостна програма, включваща:
+            </p>
+
+            <ul className={styles.featuresList}>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Организационен редизайн
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Въвеждане на система за стимули и санкции
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Усъвършенстване на вътрешна документация
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Провеждане на специализирани тиймбилдинги с фокус върху груповата динамика, работата в екип и управлението на междуличностни взаимоотношения.
+              </li>
+            </ul>
+
+            <p
+              className={styles.mainText}
+              style={{ color: currentTheme.textSecondary, marginTop: '2rem', marginBottom: '1.5rem' }}
+            >
+              По настояще компанията се възползва от абонаментен пакет, който включва:
+            </p>
+
+            <ul className={styles.featuresList}>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Текуща оценка и атестиране на служителите
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Управление на взаимоотношенията и работния климат
+              </li>
+              <li
+                className={styles.featureItem}
+                style={{ color: currentTheme.textSecondary }}
+              >
+                <span
+                  className={styles.featureBullet}
+                  style={{ color: currentTheme.accent }}
+                >
+                  •
+                </span>
+                Провеждане на фирмени тиймбилдинги
+              </li>
+            </ul>
           </div>
 
           {/* Certificates Gallery */}
