@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { backgroundOptions, defaultTheme } from "../utils/backgroundOptions";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -406,6 +407,19 @@ const Services: React.FC = () => {
                       </li>
                     ))}
                   </ul>
+
+                  <div className={styles.cardButtonContainer}>
+                    <Link
+                      to="/contact"
+                      className={styles.contactButton}
+                      style={{
+                        backgroundColor: currentTheme.accent,
+                        color: '#ffffff',
+                      }}
+                    >
+                      Изпратете ни запитване
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { backgroundOptions, defaultTheme } from '../utils/backgroundOptions';
-import Footer from '../components/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import styles from './Contact.module.css';
+import React, { useState } from "react";
+import { backgroundOptions, defaultTheme } from "../utils/backgroundOptions";
+import Footer from "../components/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Contact.module.css";
 
 interface FormData {
   firstName: string;
@@ -26,11 +26,11 @@ const Contact: React.FC = () => {
   const currentBackground = backgroundOptions.partnership;
 
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    subject: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -42,56 +42,58 @@ const Contact: React.FC = () => {
 
     // First name validation
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'Името е задължително';
+      newErrors.firstName = "Името е задължително";
     } else if (formData.firstName.trim().length < 2) {
-      newErrors.firstName = 'Името трябва да бъде поне 2 символа';
+      newErrors.firstName = "Името трябва да бъде поне 2 символа";
     }
 
     // Last name validation
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Фамилията е задължителна';
+      newErrors.lastName = "Фамилията е задължителна";
     } else if (formData.lastName.trim().length < 2) {
-      newErrors.lastName = 'Фамилията трябва да бъде поне 2 символа';
+      newErrors.lastName = "Фамилията трябва да бъде поне 2 символа";
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = 'Email-ът е задължителен';
+      newErrors.email = "Email-ът е задължителен";
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Моля въведете валиден email адрес';
+      newErrors.email = "Моля въведете валиден email адрес";
     }
 
     // Subject validation
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Темата е задължителна';
+      newErrors.subject = "Темата е задължителна";
     } else if (formData.subject.trim().length < 3) {
-      newErrors.subject = 'Темата трябва да бъде поне 3 символа';
+      newErrors.subject = "Темата трябва да бъде поне 3 символа";
     }
 
     // Message validation
     if (!formData.message.trim()) {
-      newErrors.message = 'Съобщението е задължително';
+      newErrors.message = "Съобщението е задължително";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Съобщението трябва да бъде поне 10 символа';
+      newErrors.message = "Съобщението трябва да бъде поне 10 символа";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }));
     }
   };
@@ -108,12 +110,12 @@ const Contact: React.FC = () => {
 
     try {
       // Send data to PHP script
-      const response = await fetch('contact.php', {
-        method: 'POST',
+      const response = await fetch("contact.php", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       // Check if response is ok
@@ -125,36 +127,64 @@ const Contact: React.FC = () => {
 
       if (result.success) {
         setSubmitSuccess(true);
-        setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
 
         // Reset success message after 5 seconds
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
-        console.error('Server error:', result.message);
-        console.error('Debug info:', result.debug); // Added debug logging
-        alert('Грешка при изпращане на съобщението: ' + result.message);
+        console.error("Server error:", result.message);
+        console.error("Debug info:", result.debug); // Added debug logging
+        alert("Грешка при изпращане на съобщението: " + result.message);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Възникна грешка при свързване със сървъра. Моля, опитайте отново по-късно.');
+      console.error("Error submitting form:", error);
+      alert(
+        "Възникна грешка при свързване със сървъра. Моля, опитайте отново по-късно."
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <div className={styles.contactContainer} style={{ backgroundImage: `url(${currentBackground})` }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
+      <div
+        className={styles.contactContainer}
+        style={{ backgroundImage: `url(${currentBackground})` }}
+      >
         {/* Overlay for better text readability */}
-        <div className={styles.overlay} style={{ background: currentTheme.overlay }}></div>
+        <div
+          className={styles.overlay}
+          style={{ background: currentTheme.overlay }}
+        ></div>
 
         <div className={styles.mainContent}>
           <div className={styles.contactContent}>
             {/* Header Section */}
             <div className={styles.headerSection}>
-              <h1 className={styles.pageTitle} style={{ color: currentTheme.text }}>Контакти</h1>
-              <div className={styles.divider} style={{ backgroundColor: currentTheme.accent }}></div>
-              <p className={styles.pageSubtitle} style={{ color: currentTheme.textSecondary }}>
+              <h1
+                className={styles.pageTitle}
+                style={{ color: currentTheme.text }}
+                // id="contact-form"
+              >
+                Контакти
+              </h1>
+              <div
+                className={styles.divider}
+                style={{ backgroundColor: currentTheme.accent }}
+              ></div>
+              <p
+                className={styles.pageSubtitle}
+                style={{ color: currentTheme.textSecondary }}
+              >
                 Свържете се с нас за консултация или повече информация
               </p>
             </div>
@@ -162,45 +192,70 @@ const Contact: React.FC = () => {
             {/* Contact Cards Section */}
             <div className={styles.cardsSection}>
               <div className={styles.contactCard}>
-                <h3 className={styles.cardTitle} style={{ color: currentTheme.accent }}>
-                  <FontAwesomeIcon 
-                    icon={faPhone} 
+                <h3
+                  className={styles.cardTitle}
+                  style={{ color: currentTheme.accent }}
+                >
+                  <FontAwesomeIcon
+                    icon={faPhone}
                     className={styles.cardIcon}
                     style={{ color: currentTheme.accent }}
                   />
                   Телефон
                 </h3>
-                <p className={styles.cardText} style={{ color: currentTheme.textSecondary, fontSize: '1.6rem' }}>
+                <p
+                  className={styles.cardText}
+                  style={{
+                    color: currentTheme.textSecondary,
+                    fontSize: "1.6rem",
+                  }}
+                >
                   0899 109 507
                 </p>
               </div>
 
               <div className={styles.contactCard}>
-                <h3 className={styles.cardTitle} style={{ color: currentTheme.accent }}>
-                  <FontAwesomeIcon 
-                    icon={faEnvelope} 
+                <h3
+                  className={styles.cardTitle}
+                  style={{ color: currentTheme.accent }}
+                >
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
                     className={styles.cardIcon}
                     style={{ color: currentTheme.accent }}
                   />
                   Email
                 </h3>
-                <div className={styles.emailList} style={{ color: currentTheme.textSecondary }}>
-                  <p className={styles.emailItem}>mentor.management.mm@gmail.com</p>
-                  <p className={styles.emailItem}>office@mentor-management.eu</p>
-                  <p className={styles.emailItem}>v.kostova@mentor-management.eu</p>
+                <div
+                  className={styles.emailList}
+                  style={{ color: currentTheme.textSecondary }}
+                >
+                  <p className={styles.emailItem}>
+                    mentor.management.mm@gmail.com
+                  </p>
+                  <p className={styles.emailItem}>
+                    office@mentor-management.eu
+                  </p>
+                  <p className={styles.emailItem}>
+                    v.kostova@mentor-management.eu
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Contact Form Section */}
             <div className={styles.formCard}>
-              <h2 className={styles.formTitle} style={{ color: currentTheme.accent }}>
+              <h2
+                className={styles.formTitle}
+                style={{ color: currentTheme.accent }}
+              >
                 Изпратете ни съобщение
               </h2>
 
               {submitSuccess && (
                 <div className={styles.successMessage}>
-                  ✅ Съобщението беше изпратено успешно! Ще се свържем с вас скоро.
+                  ✅ Съобщението беше изпратено успешно! Ще се свържем с вас
+                  скоро.
                 </div>
               )}
 
@@ -215,12 +270,12 @@ const Contact: React.FC = () => {
                       placeholder="Име"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className={`${styles.formInput} ${errors.firstName ? styles.errorInput : ''}`}
+                      className={`${styles.formInput} ${
+                        errors.firstName ? styles.errorInput : ""
+                      }`}
                     />
                     {errors.firstName && (
-                      <p className={styles.errorMessage}>
-                        {errors.firstName}
-                      </p>
+                      <p className={styles.errorMessage}>{errors.firstName}</p>
                     )}
                   </div>
 
@@ -233,12 +288,12 @@ const Contact: React.FC = () => {
                       placeholder="Фамилия"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className={`${styles.formInput} ${errors.lastName ? styles.errorInput : ''}`}
+                      className={`${styles.formInput} ${
+                        errors.lastName ? styles.errorInput : ""
+                      }`}
                     />
                     {errors.lastName && (
-                      <p className={styles.errorMessage}>
-                        {errors.lastName}
-                      </p>
+                      <p className={styles.errorMessage}>{errors.lastName}</p>
                     )}
                   </div>
                 </div>
@@ -252,12 +307,12 @@ const Contact: React.FC = () => {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`${styles.formInput} ${errors.email ? styles.errorInput : ''}`}
+                    className={`${styles.formInput} ${
+                      errors.email ? styles.errorInput : ""
+                    }`}
                   />
                   {errors.email && (
-                    <p className={styles.errorMessage}>
-                      {errors.email}
-                    </p>
+                    <p className={styles.errorMessage}>{errors.email}</p>
                   )}
                 </div>
 
@@ -269,12 +324,12 @@ const Contact: React.FC = () => {
                     placeholder="Тема (относно)"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`${styles.formInput} ${errors.subject ? styles.errorInput : ''}`}
+                    className={`${styles.formInput} ${
+                      errors.subject ? styles.errorInput : ""
+                    }`}
                   />
                   {errors.subject && (
-                    <p className={styles.errorMessage}>
-                      {errors.subject}
-                    </p>
+                    <p className={styles.errorMessage}>{errors.subject}</p>
                   )}
                 </div>
 
@@ -286,22 +341,24 @@ const Contact: React.FC = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`${styles.formTextarea} ${errors.message ? styles.errorInput : ''}`}
+                    className={`${styles.formTextarea} ${
+                      errors.message ? styles.errorInput : ""
+                    }`}
                   />
                   {errors.message && (
-                    <p className={styles.errorMessage}>
-                      {errors.message}
-                    </p>
+                    <p className={styles.errorMessage}>{errors.message}</p>
                   )}
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
                   className={styles.submitButton}
                   style={{
-                    background: isSubmitting ? 'rgba(156, 163, 175, 0.5)' : currentTheme.accent,
-                    color: currentTheme.primary
+                    background: isSubmitting
+                      ? "rgba(156, 163, 175, 0.5)"
+                      : currentTheme.accent,
+                    color: currentTheme.primary,
                   }}
                 >
                   {isSubmitting ? (
@@ -309,14 +366,16 @@ const Contact: React.FC = () => {
                       <div className={styles.loadingSpinner}></div>
                       Изпращане...
                     </div>
-                  ) : 'Изпрати съобщение'}
+                  ) : (
+                    "Изпрати съобщение"
+                  )}
                 </button>
               </form>
             </div>
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

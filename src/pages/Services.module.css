@@ -307,3 +307,30 @@
     order: 2;
   }
 }
+
+/* Card button container */
+.cardButtonContainer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Contact button */
+.contactButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.contactButton:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: #ffffff !important;
+}
