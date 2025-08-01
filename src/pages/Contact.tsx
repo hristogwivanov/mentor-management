@@ -108,13 +108,18 @@ const Contact: React.FC = () => {
 
     try {
       // Send data to PHP script
-      const response = await fetch('./contact.php', {
+      const response = await fetch('contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       });
+
+      // Check if response is ok
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
 
@@ -126,6 +131,7 @@ const Contact: React.FC = () => {
         setTimeout(() => setSubmitSuccess(false), 5000);
       } else {
         console.error('Server error:', result.message);
+        console.error('Debug info:', result.debug); // Added debug logging
         alert('Грешка при изпращане на съобщението: ' + result.message);
       }
     } catch (error) {
@@ -195,19 +201,6 @@ const Contact: React.FC = () => {
               {submitSuccess && (
                 <div className={styles.successMessage}>
                   ✅ Съобщението беше изпратено успешно! Ще се свържем с вас скоро.
-                </div>
-              )}
-
-              {submitSuccess && (
-                <div className={styles.successMessageAlt}>
-                  <div className={styles.successIcon}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 6L9 17L4 12" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <p className={styles.successText} style={{ color: '#fff' }}>
-                    Съобщението е изпратено успешно! Благодарим Ви за интереса.
-                  </p>
                 </div>
               )}
 

@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   // Format email body with proper HTML
   $htmlBody = "<html><body>"
-           . "<h2>Ново съобщение от уебсайта МенторМениджмънт</h2>"
+           . "<h2>Ново съобщение от уебсайта Ментор Мениджмънт</h2>"
            . "<p><strong>Име:</strong> $firstName</p>"
            . "<p><strong>Фамилия:</strong> $lastName</p>"
            . "<p><strong>Имейл:</strong> $email</p>"
@@ -38,30 +38,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            . "<p>" . nl2br($message) . "</p>"
            . "</body></html>";
 
-  // SMTP Configuration - Update these with your Superhosting.bg credentials
-  $smtpHost = 'mail.your-domain.com';     // Your SMTP server (e.g., mail.mentor-management.eu)
-  $smtpUsername = 'noreply@your-domain.com'; // Replace with your actual noreply email
-  $smtpPassword = 'your-smtp-password';    // Replace with your actual password
-  $smtpPort = 587;                        // Common ports: 587 (TLS) or 465 (SSL)
-  $smtpSecure = 'tls';                    // 'tls' or 'ssl'
-  $senderName = 'Ментор Мениджмънт';
+  // SMTP Configuration - Update these with your actual domain credentials
+  // For mentor-management.eu, these should be:
+  $smtpHost = 'mail.mentor-management.eu';  // Your domain's mail server
+  $smtpUsername = 'no-reply@mentor-management.eu'; // Create this email account in cPanel
+  $smtpPassword = 'N0Reply@MMVK';    // The password you set for the noreply email
+  $smtpPort = 587;                         // 587 for TLS or 465 for SSL
+  $smtpSecure = 'tls';                     // 'tls' or 'ssl'
+  $senderName = 'Ментор Мениджмънт ММ';
 
-  // Send using SMTP
+  // Send using SMTP with proper error handling
   try {
-    // Use PHP built-in mail function as fallback if you prefer not to include PHPMailer
-    // Comment this block and uncomment the PHPMailer code below if you want to use PHPMailer
+    // First, validate required fields
+    if (empty($firstName) || empty($lastName) || !$email || empty($message)) {
+      throw new Exception('Моля попълнете всички задължителни полета.');
+    }
+    
+    // Use SwiftMailer or PHPMailer for better SMTP support
+    // For now, using enhanced mail() function with better headers
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=UTF-8\r\n";
     $headers .= "From: $senderName <$smtpUsername>\r\n";
     $headers .= "Reply-To: $email\r\n";
-
-    $success = mail($to, $emailSubject, $htmlBody, $headers);
+    $headers .= "Return-Path: $smtpUsername\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+    
+    // Additional parameters for better delivery
+    $additional_parameters = "-f$smtpUsername";
+    
+    $success = mail($to, $emailSubject, $htmlBody, $headers, $additional_parameters);
     
     if ($success) {
       http_response_code(200);
       echo json_encode(['success' => true, 'message' => 'Съобщението е изпратено успешно!']);
     } else {
-      throw new Exception('Mail function failed');
+      // Get more specific error information
+      $errorMsg = 'Неуспешно изпращане на имейл. ';
+      if (!function_exists('mail')) {
+        $errorMsg .= 'Mail функцията не е налична.';
+      } else {
+        $errorMsg .= 'Проверете SMTP настройките.';
+      }
+      throw new Exception($errorMsg);
     }
     
     /* To use PHPMailer (recommended), uncomment this section and install PHPMailer
@@ -98,11 +116,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     */
   } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode([
-      'success' => false, 
-      'message' => 'Възникна грешка при изпращане на съобщението.',
-      'error' => $e->getMessage()
-    ]);
+    $errorMessage = $e->getMessage();
+    
+    // Log the error for debugging (in a real environment, log to file)
+    error_log("Contact form error: " . $errorMessage);
+    
+    // Return user-friendly error message
+    if (strpos($errorMessage, 'задължителни полета') !== false) {
+      echo json_encode([
+        'success' => false, 
+        'message' => $errorMessage
+      ]);
+    } else {
+      echo json_encode([
+        'success' => false, 
+        'message' => 'Възникна грешка при свързване със сървъра. Моля, опитайте отново по-късно.',
+        'debug' => $errorMessage // Remove this in production
+      ]);
+    }
   }
 } else {
   http_response_code(405);
