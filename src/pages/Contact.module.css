@@ -69,7 +69,7 @@
 .pageSubtitle {
   font-size: 1.2rem;
   margin: 0 auto;
-  text-align: justify;
+  text-align: center;
 }
 
 /* Contact cards section */
@@ -169,7 +169,7 @@
 /* Card text */
 .cardText {
   font-size: 1.1rem;
-  text-align: justify;
+  text-align: center;
 }
 
 /* Email list */
